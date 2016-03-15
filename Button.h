@@ -1,6 +1,11 @@
 /*----------------------------------------------------------------------*
- * Arduino Button Library v1.0                                          *
- * Jack Christensen Mar 2012                                            *
+ * Arduino Button Library                                               *
+ *   v1.0 - Jack Christensen                                            *
+ *          March 2012                                                  *
+ *          https://github.com/JChristensen/Button                      *
+ *   v1.1 - Michael Copland                                             *
+ *          March 2016                                                  *
+ *          https://github.com/mjbcopland/Button                        *
  *                                                                      *
  * This work is licensed under the Creative Commons Attribution-        *
  * ShareAlike 3.0 Unported License. To view a copy of this license,     *
