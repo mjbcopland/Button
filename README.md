@@ -7,7 +7,7 @@ An Arduino library for debouncing and reading momentary contact switches like ta
 1. Download _Button.zip_
 2. In the Arduino IDE, navigate to _Sketch → Include Library → Add .ZIP Library..._
 3. Browse to where _Button.zip_ was downloaded and open it
-4. The library should now be installed. To use the library, navigate to Sketch → Include Library → Button
+4. The library should now be installed. To use the library, navigate to _Sketch → Include Library → Button_
 
 ## Usage
 
