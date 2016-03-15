@@ -11,12 +11,4 @@ An Arduino library for debouncing and reading momentary contact switches like ta
 
 ## Usage
 
-#### Button constructor
-
-##### Prototype
-
-    Button(uint8_t, bool, bool, uint8_t);
-
-##### Usage
-
 See the wiki.
