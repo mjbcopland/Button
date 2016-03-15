@@ -1,25 +1,22 @@
-ReadMe file for Arduino Button Library v1.0
-https://github.com/JChristensen/Button
-Jack Christensen Mar 2012
+# Arduino Button Library
 
-This work is licensed under the Creative Commons Attribution-ShareAlike 3.0
-Unported License. To view a copy of this license, visit
-http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative
-Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
+An Arduino library for debouncing and reading momentary contact switches like tactile button switches.  "Long presses" of arbitrary length can be detected. Works well in state machine constructs.  Use the read() function to read each button in the main loop, which should execute as fast as possible.
 
---------------------------------------------------------------------------------
-Documentation is a work in progress.
-Please check back around mid-April.
-Thanks! ... jc
-25Mar2012
+## Installation
 
---------------------------------------------------------------------------------
-To use the library:
-(1) Go to https://github.com/JChristensen/Button/downloads and download the
-file in the compressed format of your choice (zip or tar.gz) to a convenient
-location on your PC.
-(2) Uncompress the downloaded file. This will result in a folder containing all
-the files for the library, that has a name similar to "JChristensen-
-Button-42e98a7".
-(3) Rename the folder to just "Button".
-(4) Copy the renamed folder to the Arduino sketchbook\libraries folder.
+1. Download _Button.zip_
+2. In the Arduino IDE, navigate to _Sketch → Include Library → Add .ZIP Library..._
+3. Browse to where _Button.zip_ was downloaded and open it
+4. The library should now be installed. To use the library, navigate to Sketch → Include Library → Button
+
+## Usage
+
+#### Button constructor
+
+##### Prototype
+
+    Button(uint8_t, bool, bool, uint8_t);
+
+##### Usage
+
+See the wiki.
