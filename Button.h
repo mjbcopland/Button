@@ -17,8 +17,6 @@
 #ifndef __Button_h__
 #define __Button_h__
 
-#include <Arduino.h> 
-
 class Button {
   public:
     Button(uint8_t, bool, bool, uint8_t);
@@ -42,7 +40,7 @@ class Button {
     const uint8_t _pin;
     const bool    _puEnable;
     const bool    _invert;
-    const uint8_t _debounceDelay;
+    const uint8_t _dbTime;
 
     bool _state;
     bool _lastState;
