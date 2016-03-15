@@ -8,35 +8,76 @@
  * letter to Creative Commons, 171 Second Street, Suite 300,            *
  * San Francisco, California, 94105, USA.                               *
  *----------------------------------------------------------------------*/
-#ifndef Button_h
-#define Button_h
-#if ARDUINO >= 100
+
+#ifndef __Button_h__
+#define __Button_h__
+
 #include <Arduino.h> 
-#else
-#include <WProgram.h> 
-#endif
-class Button
-{
-    public:
-        Button(uint8_t pin, uint8_t puEnable, uint8_t invert, uint32_t dbTime);
-        uint8_t read();
-        uint8_t isPressed();
-        uint8_t isReleased();
-        uint8_t wasPressed();
-        uint8_t wasReleased();
-        uint8_t pressedFor(uint32_t ms);
-        uint8_t releasedFor(uint32_t ms);
-        uint32_t lastChange();
+
+class Button {
+  public:
+    Button(uint8_t, bool, bool, uint8_t);
     
-    private:
-        uint8_t _pin;           //arduino pin number
-        uint8_t _puEnable;      //internal pullup resistor enabled
-        uint8_t _invert;        //if 0, interpret high state as pressed, else interpret low state as pressed
-        uint8_t _state;         //current button state
-        uint8_t _lastState;     //previous button state
-        uint8_t _changed;       //state changed since last read
-        uint32_t _time;         //time of current state (all times are in ms)
-        uint32_t _lastChange;   //time of last state change
-        uint32_t _dbTime;       //debounce time
+    bool read();
+
+    bool isPressed()  {return _state;}
+    bool isReleased() {return !isPressed();}
+
+    bool wasPressed()  {return isPressed()  && _changed;}
+    bool wasReleased() {return isReleased() && _changed;}
+    
+    bool pressedFor(unsigned long ms)  {return isPressed()  && hasElapsed(ms);}
+    bool releasedFor(unsigned long ms) {return isReleased() && hasElapsed(ms);}
+
+    unsigned long lastChange() {return _lastChange;}
+
+  private:
+    bool hasElapsed(unsigned long ms) {return _time - _lastChange >= ms;}
+
+    const uint8_t _pin;
+    const bool    _puEnable;
+    const bool    _invert;
+    const uint8_t _debounceDelay;
+
+    bool _state;
+    bool _lastState;
+    bool _changed;
+
+    unsigned long _time;
+    unsigned long _lastTime;
+    unsigned long _lastChange;
 };
+
+
+
+
+/*----------------------------------------------------------------------*
+ * isPressed() and isReleased() check the button state when it was last *
+ * read, and return false or true accordingly.                          *
+ * These functions do not cause the button to be read.                  *
+ *----------------------------------------------------------------------*/
+
+
+/*----------------------------------------------------------------------*
+ * wasPressed() and wasReleased() check the button state to see if it   *
+ * changed between the last two reads and return false (0) or           *
+ * true (!=0) accordingly.                                              *
+ * These functions do not cause the button to be read.                  *
+ *----------------------------------------------------------------------*/
+
+
+/*----------------------------------------------------------------------*
+ * pressedFor(ms) and releasedFor(ms) check to see if the button is     *
+ * pressed (or released), and has been in that state for the specified  *
+ * time in milliseconds. Returns false (0) or true (1) accordingly.     *
+ * These functions do not cause the button to be read.                  *
+ *----------------------------------------------------------------------*/
+
+
+/*----------------------------------------------------------------------*
+ * lastChange() returns the time the button last changed state,         *
+ * in milliseconds.                                                     *
+ *----------------------------------------------------------------------*/
+
+
 #endif
