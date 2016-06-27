@@ -1,8 +1,6 @@
 #ifndef __Button_h__
 #define __Button_h__
 
-enum config_t {INTERNAL_PULLUP, EXTERNAL_PULLUP, EXTERNAL_PULLDOWN};
-
 class BaseButton {
 public:
   BaseButton(unsigned long dbTime)
@@ -42,6 +40,9 @@ protected:
 private:
   inline bool hasElapsed(unsigned long ms) const {return millis() - lastChange >= ms;}
 };
+
+// global scope to match scoping of pinMode's INPUT, OUTPUT and INPUT_PULLUP
+enum config_t {INTERNAL_PULLUP, EXTERNAL_PULLUP, EXTERNAL_PULLDOWN};
 
 class Button : public BaseButton {
 public:
