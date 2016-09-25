@@ -1,10 +1,9 @@
-#ifndef __Button_h__
-#define __Button_h__
+#pragma once
 
 class BaseButton {
 public:
   BaseButton(unsigned long dbTime)
-      : dbTime(dbTime), state(false), changed(false), lastChange(0) {}
+      : dbTime(dbTime), state(false), changed(false), lastChange(-dbTime) {}
 
   void update() {
     changed = false;
@@ -47,7 +46,9 @@ enum config_t {INTERNAL_PULLUP, EXTERNAL_PULLUP, EXTERNAL_PULLDOWN};
 class Button : public BaseButton {
 public:
   Button(uint8_t pin, config_t config, unsigned long dbTime)
-      : BaseButton(dbTime), pin(pin), config(config) {}
+      : BaseButton(dbTime), pin(pin), config(config) {
+    pinMode(pin, config == INTERNAL_PULLUP ? INPUT_PULLUP : INPUT);
+  }
 
   inline bool read() const {return digitalRead(pin) ^ (config != EXTERNAL_PULLDOWN);}
 
@@ -55,5 +56,3 @@ private:
   const uint8_t pin;
   const config_t config;
 };
-
-#endif
