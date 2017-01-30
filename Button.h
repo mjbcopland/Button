@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Arduino.h>
+
 class BaseButton {
 public:
   BaseButton(unsigned long dbTime)
